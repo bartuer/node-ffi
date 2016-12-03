@@ -1,4 +1,3 @@
-
 /**
  * This example creates an ffi.Callback from the "Math.abs()" JavaScript function
  * then creates a ffi.ForeignFunction from that callback function pointer.
@@ -13,17 +12,17 @@
  * it doesn't crash ever.
  */
 
-var ref = require('ref')
-  , ffi = require('../')
-  , assert = require('assert')
+var ref = require('ref'),
+    ffi = require('../'),
+    assert = require('assert');
 
-var funcPtr = ffi.Callback('int', [ 'int' ], Math.abs)
-var func = ffi.ForeignFunction(funcPtr, 'int', [ 'int' ])
+var funcPtr = ffi.Callback('int', ['int'], Math.abs);
+var func = ffi.ForeignFunction(funcPtr, 'int', ['int']);
 
-function loop () {
-  for (var i = 0; i < 100; i++) {
-    assert.equal(Math.abs(-i), func(-i))
-  }
-  (typeof setImmediate != 'undefined' ? setImmediate : process.nextTick)(loop)
+function loop() {
+    for (var i = 0; i < 100; i++) {
+        assert.equal(Math.abs(-i), func(-i));
+    }
+    (typeof setImmediate != 'undefined' ? setImmediate : process.nextTick)(loop);
 }
-loop()
+loop();
